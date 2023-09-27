@@ -3,26 +3,24 @@ package nl.yc2309.javahotel.persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.yc2309.javahotel.domein.Kamer;
-
+import nl.yc2309.javahotel.domein.Hotel;
 
 @Service
-public class KamerService {
-	// Has relatie met Kamer repository
+public class HotelService {
+	// Has relatie met Hotel repository
 	@Autowired
-	KamerRepository kr;
+	HotelRepository hr;
 	//-------------------------------------------
-	// methode
-	public Iterable<Kamer> geefAlleKamers() {
-		return kr.findAll();
+	public void slaHotelOp(Hotel hotel) {
+		hr.save(hotel);	
 	}
 	//-------------------------------------------
-	public void slaKamerOp(Kamer kamer) {
-		kr.save(kamer);	
+	public Iterable<Hotel> geefAlleHotels() {
+		return hr.findAll();
 	}
 	//-------------------------------------------
-	public void verwijderKamer(long kamerid) {
-		kr.deleteById(kamerid);
+	public void verwijderHotel(Long hotelid) {
+		hr.deleteById(hotelid);
 	}
 	//-------------------------------------------
 }
