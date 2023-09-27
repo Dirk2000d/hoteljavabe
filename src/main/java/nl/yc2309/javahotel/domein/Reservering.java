@@ -18,5 +18,36 @@ public class Reservering {
 	LocalDate aankomstDatum, vertrekdatum;
 	boolean isBetaald;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public int getReserveringId() {
+		return reserveringId;
+	}
+	public void setReserveringId(int reserveringId) {
+		this.reserveringId = reserveringId;
+	}
+	public LocalDate getAankomstDatum() {
+		return aankomstDatum;
+	}
+	public void setAankomstDatum(LocalDate aankomstDatum) {
+		this.aankomstDatum = aankomstDatum;
+	}
+	public LocalDate getVertrekdatum() {
+		return vertrekdatum;
+	}
+	public void setVertrekdatum(LocalDate vertrekdatum) {
+		this.vertrekdatum = vertrekdatum;
+	}
+	public boolean isBetaald() {
+		return isBetaald;
+	}
+	public void setBetaald(boolean isBetaald) {
+		this.isBetaald = isBetaald;
+	}
+	
 	
 }
