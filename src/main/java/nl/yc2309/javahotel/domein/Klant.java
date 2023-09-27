@@ -16,4 +16,32 @@ public class Klant {
 	String adres;
 	LocalDate geboorteDatum;
 	int paspoortNummer;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getAdres() {
+		return adres;
+	}
+	public void setAdres(String adres) {
+		this.adres = adres;
+	}
+	public LocalDate getGeboorteDatum() {
+		return geboorteDatum;
+	}
+	public void setGeboorteDatum(LocalDate geboorteDatum) {
+		this.geboorteDatum = geboorteDatum;
+	}
+	public int getPaspoortNummer() {
+		return paspoortNummer;
+	}
+	public void setPaspoortNummer(int paspoortNummer) {
+		this.paspoortNummer = paspoortNummer;
+	}
+	
+	
+	
+	
 }
