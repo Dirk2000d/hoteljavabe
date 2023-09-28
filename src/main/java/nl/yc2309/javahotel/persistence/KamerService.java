@@ -12,11 +12,12 @@ public class KamerService {
 	// Has relatie met Kamer repository
 	@Autowired
 	KamerRepository kr;
-	
+	//-------------------------------------------
 	// methode
 	public Iterable<Kamer> geefAlleKamers() {
 		return kr.findAll();
 	}
+<<<<<<< HEAD
 	// opslaan
 	public void slaKamerOp(Kamer kamer) {
 		kr.save(kamer);	
@@ -46,6 +47,15 @@ public class KamerService {
 	        
 	        return kr.save(kamerDB);
 	    }
+=======
+	//-------------------------------------------
+	public void slaKamerOp(Kamer kamer) {
+		kr.save(kamer);	
 	}
-	
+	//-------------------------------------------
+	public void verwijderKamer(long kamerid) {
+		kr.deleteById(kamerid);
+>>>>>>> master
+	}
+	//-------------------------------------------
 }
