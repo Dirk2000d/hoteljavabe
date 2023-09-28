@@ -13,36 +13,40 @@ public class Kamer {
 	private long id;
 	
 	//Colommen in de database
-	private String naam;
-	private int bedden;
+	private KamerType kamerType;
+	private float prijs;
+	private int kamerNummer;
 	private boolean beschikbaar;
-	
-	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNaam() {
-		return naam;
+	public KamerType getKamerType() {
+		return kamerType;
 	}
-	public void setNaam(String naam) {
-		this.naam = naam;
+	public void setKamerType(KamerType kamerType) {
+		this.kamerType = kamerType;
 	}
-	public int getBedden() {
-		return bedden;
+	public float getPrijs() {
+		return prijs;
 	}
-	public void setBedden(int bedden) {
-		this.bedden = bedden;
+	public void setPrijs(float prijs) {
+		this.prijs = prijs;
+	}
+	public int getKamerNummer() {
+		return kamerNummer;
+	}
+	public void setKamerNummer(int kamerNummer) {
+		this.kamerNummer = kamerNummer;
 	}
 	public boolean isBeschikbaar() {
 		return beschikbaar;
 	}
 	public void setBeschikbaar(boolean beschikbaar) {
 		this.beschikbaar = beschikbaar;
-	}
-	
-	
+	}	
 
+	
 }

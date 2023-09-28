@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +31,10 @@ public class KamerEndpoint {
 	@DeleteMapping("verwijderkamer/{kamerid}")
 	public void verwijderKamer(@PathVariable("kamerid") int kamerid) {
 		ks.verwijderKamer(kamerid);
+	}
+	
+	@PutMapping("updatekamer/{kamerid}")
+	public Kamer updateKamer(@RequestBody Kamer kamer,@PathVariable("kamerid") int kamerid) {
+		return ks.updateKamer(kamer, kamerid);
 	}
 }
