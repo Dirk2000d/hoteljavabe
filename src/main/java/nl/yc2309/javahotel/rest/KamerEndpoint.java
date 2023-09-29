@@ -33,8 +33,8 @@ public class KamerEndpoint {
 		ks.verwijderKamer(kamerid);
 	}
 	
-	@PutMapping("updatekamer/{kamerid}")
-	public Kamer updateKamer(@RequestBody Kamer kamer,@PathVariable("kamerid") int kamerid) {
-		return ks.updateKamer(kamer, kamerid);
+	@PutMapping("updatekamer")
+	public Kamer updateKamer(@RequestBody Kamer kamer) {
+		return ks.updateKamer(kamer);
 	}
 }
