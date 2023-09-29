@@ -27,25 +27,8 @@ public class KamerService {
 		kr.deleteById(kamerid);	
 	}
 	// update
-	public Kamer updateKamer(Kamer kamer, long kamerid) {
+	public Kamer updateKamer(Kamer kamer) {
 		System.out.println("update kamer");
-		{ 
-	        Kamer kamerDB = kr.findById(kamerid).get();
-	        
-	        if (Objects.nonNull(kamer.getPrijs())) {
-	                kamerDB.setPrijs(kamer.getPrijs());
-	            }
-	        if (Objects.nonNull(kamer.getKamerType())) {
-                kamerDB.setKamerType(kamer.getKamerType());
-            }
-	        if (Objects.nonNull(kamer.getKamerNummer())) {
-                kamerDB.setKamerNummer(kamer.getKamerNummer());
-            }
-	        if (Objects.nonNull(kamer.isBeschikbaar())) {
-                kamerDB.setBeschikbaar(kamer.isBeschikbaar());
-            }
-	        
-	        return kr.save(kamerDB);
-		}
+		return kr.save(kamer);
 	  }
 }
