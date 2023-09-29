@@ -17,6 +17,7 @@ public class Kamer {
 	private float prijs;
 	private int kamerNummer;
 	private boolean beschikbaar;
+	
 	public long getId() {
 		return id;
 	}

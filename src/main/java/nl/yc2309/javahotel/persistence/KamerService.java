@@ -1,7 +1,5 @@
 package nl.yc2309.javahotel.persistence;
 
-import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.yc2309.javahotel.domein.Kamer;
@@ -13,7 +11,7 @@ public class KamerService {
 	@Autowired
 	KamerRepository kr;
 	//-------------------------------------------
-	// methode
+	// methode view
 	public Iterable<Kamer> geefAlleKamers() {
 		return kr.findAll();
 	}
