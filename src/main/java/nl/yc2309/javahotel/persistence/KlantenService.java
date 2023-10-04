@@ -10,13 +10,24 @@ public class KlantenService {
 
 	@Autowired
 	KlantRepository kr;
-	
+	// opslaan
 	public void slaKlantOp(Klant klant) {
 		kr.save(klant);
 	}
-
+	// view
 	public Iterable<Klant> geefAlleKlanten() {
+		kr.save(new Klant());
 		return kr.findAll();
+	}
+	
+	// verwijderen
+	public void verwijderKamer(long klantid) {
+		kr.deleteById(klantid);	
+	}
+	// update
+	public Klant updateKlant(Klant klant) {
+		System.out.println("update klant");
+		return kr.save(klant);
 	}
 
 }
