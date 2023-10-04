@@ -24,8 +24,8 @@ public class KamerEndpoint {
 	}
 	
 	@PostMapping("voegkamertoe")
-	public void voegKamerToe(@RequestBody Kamer kamer) {
-		ks.slaKamerOp(kamer);
+	public Kamer voegKamerToe(@RequestBody Kamer kamer) {
+		return ks.slaKamerOp(kamer);
 	}
 	
 	@PutMapping("updatekamer")

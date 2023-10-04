@@ -17,8 +17,8 @@ public class KamerService {
 	}
 
 	// opslaan
-	public void slaKamerOp(Kamer kamer) {
-		kr.save(kamer);	
+	public Kamer slaKamerOp(Kamer kamer) {
+		return kr.save(kamer);	
 	}
 	// update
 	public Kamer updateKamer(Kamer kamer) {

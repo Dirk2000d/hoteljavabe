@@ -1,7 +1,5 @@
 package nl.yc2309.javahotel.domein;
 
-import java.awt.Image;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +12,7 @@ public class Review {
 	
 	private String tekst;
 	private int waardering;
-	private Image image;
+	//private Image image;
 	public long getId() {
 		return id;
 	}
@@ -33,12 +31,12 @@ public class Review {
 	public void setWaardering(int waardering) {
 		this.waardering = waardering;
 	}
-	public Image getImage() {
+	/*public Image getImage() {
 		return image;
 	}
 	public void setImage(Image image) {
 		this.image = image;
-	}
+	}*/
 	
 	
 }
