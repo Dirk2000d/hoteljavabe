@@ -19,15 +19,15 @@ public class KlantenService {
 		kr.save(new Klant());
 		return kr.findAll();
 	}
-	
-	// verwijderen
-	public void verwijderKamer(long klantid) {
-		kr.deleteById(klantid);	
-	}
 	// update
 	public Klant updateKlant(Klant klant) {
 		System.out.println("update klant");
 		return kr.save(klant);
 	}
+	// verwijderen
+	public void verwijderKlant(long klantid) {
+		kr.deleteById(klantid);	
+	}
+
 
 }

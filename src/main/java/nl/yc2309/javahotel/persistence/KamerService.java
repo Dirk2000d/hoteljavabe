@@ -20,13 +20,13 @@ public class KamerService {
 	public void slaKamerOp(Kamer kamer) {
 		kr.save(kamer);	
 	}
-	// verwijderen
-	public void verwijderKamer(long kamerid) {
-		kr.deleteById(kamerid);	
-	}
 	// update
 	public Kamer updateKamer(Kamer kamer) {
 		System.out.println("update kamer");
 		return kr.save(kamer);
-	  }
+	}
+	// verwijderen
+	public void verwijderKamer(long kamerid) {
+		kr.deleteById(kamerid);	
+	}
 }

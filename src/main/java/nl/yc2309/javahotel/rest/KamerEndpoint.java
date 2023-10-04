@@ -28,13 +28,13 @@ public class KamerEndpoint {
 		ks.slaKamerOp(kamer);
 	}
 	
-	@DeleteMapping("verwijderkamer/{kamerid}")
-	public void verwijderKamer(@PathVariable("kamerid") int kamerid) {
-		ks.verwijderKamer(kamerid);
-	}
-	
 	@PutMapping("updatekamer")
 	public Kamer updateKamer(@RequestBody Kamer kamer) {
 		return ks.updateKamer(kamer);
+	}
+	
+	@DeleteMapping("verwijderkamer/{kamerid}")
+	public void verwijderKamer(@PathVariable("kamerid") int kamerid) {
+		ks.verwijderKamer(kamerid);
 	}
 }
