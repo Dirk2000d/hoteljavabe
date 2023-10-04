@@ -30,7 +30,7 @@ public class KlantEndpoint {
 	
 	@DeleteMapping("verwijderklant/{klantid}")
 	public void verwijderKlant(@PathVariable("klantid") int klantid) {
-		ks.verwijderKamer(klantid);
+		ks.verwijderKlant(klantid);
 	}
 	
 	@PutMapping("updateklant")
