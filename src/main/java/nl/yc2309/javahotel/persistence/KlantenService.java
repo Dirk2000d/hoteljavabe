@@ -1,5 +1,7 @@
 package nl.yc2309.javahotel.persistence;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +21,18 @@ public class KlantenService {
 		kr.save(new Klant());
 		return kr.findAll();
 	}
+	public Optional<Klant> geefKlant(long id) {
+		return kr.findById(id);
+	}
+	
 	// update
 	public Klant updateKlant(Klant klant) {
 		System.out.println("update klant");
 		return kr.save(klant);
 	}
 	// verwijderen
-	public void verwijderKlant(long klantid) {
-		kr.deleteById(klantid);	
+	public void verwijderKlant(long id) {
+		kr.deleteById(id);	
 	}
 
 
