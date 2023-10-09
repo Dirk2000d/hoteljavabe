@@ -37,4 +37,10 @@ public class KamerEndpoint {
 	public void verwijderKamer(@PathVariable("kamerid") int kamerid) {
 		ks.verwijderKamer(kamerid);
 	}
+	
+	@GetMapping("voegkameraanreserveringtoe/{kamerid}/{reserveringid}")
+	public void kenKamerAanReserveringToe(@PathVariable("kamerid") int reservering, @PathVariable("reserveringid")int v) {
+		ks.kenkamertoeaanreservering(v, reservering);
+		
+	}
 }
