@@ -49,8 +49,4 @@ public class Klant extends Account{
 	public void setReservering(List<Reservering> reservering) {
 		this.reserveringen = reservering;
 	}
-	
-	
-	
-	
 }

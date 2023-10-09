@@ -16,12 +16,28 @@ public class KlantenService {
 	@Autowired
 	KlantRepository kr;
 	// opslaan
-	public void slaKlantOp(Klant klant) {
-		kr.save(klant);
+	public void slaKlantOp(Klant klant) 
+	{
+		Iterable<Klant> nkr = kr.findAll();
+		boolean bestaat = false;
+		
+		for (Klant k : nkr) 
+		{
+			if (klant.getEmail().equals(k.getEmail())) 
+			{
+				bestaat = true;
+			}
+		}
+		
+		if (bestaat == false) {
+			kr.save(klant);
+		} else {
+			System.out.println("email bestaat al");
+		}
+		
 	}
 	// view
 	public Iterable<Klant> geefAlleKlanten() {
-		//kr.save(new Klant());
 		return kr.findAll();
 	}
 	public Optional<Klant> geefKlant(long id) {
@@ -38,7 +54,6 @@ public class KlantenService {
 		kr.deleteById(id);	
 	}
 	public void kenreserveringtoeaanklant(long klantid, long reserveringid) {
-		// TODO Auto-generated method stub
 		Klant k = kr.findById(klantid).get();
 		Reservering r = rr.findById(reserveringid).get();
 		k.addReservering(r);
