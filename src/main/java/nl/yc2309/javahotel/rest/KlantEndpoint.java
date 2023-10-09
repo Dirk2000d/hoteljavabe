@@ -44,4 +44,9 @@ public class KlantEndpoint {
 	public Klant updateKlant(@RequestBody Klant klant) {
 		return ks.updateKlant(klant);
 	}
+	
+	@GetMapping("voegreserveringtoe/{klantid}/{reserveringid}")
+	public void kenReserveringAanKlantToe(@PathVariable("klantid") long klantid, @PathVariable("reserveringid") long reserveringid){
+		ks.kenreserveringtoeaanklant(klantid, reserveringid);
+	}
 }

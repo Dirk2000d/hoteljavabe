@@ -14,7 +14,6 @@ public class Reservering {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	int reserveringId;
 	LocalDate aankomstDatum, vertrekdatum;
 	boolean isBetaald;
 	
@@ -24,11 +23,11 @@ public class Reservering {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public int getReserveringId() {
-		return reserveringId;
+	public long getReserveringId() {
+		return id;
 	}
 	public void setReserveringId(int reserveringId) {
-		this.reserveringId = reserveringId;
+		this.id = reserveringId;
 	}
 	public LocalDate getAankomstDatum() {
 		return aankomstDatum;
