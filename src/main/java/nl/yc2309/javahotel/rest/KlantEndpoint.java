@@ -49,4 +49,10 @@ public class KlantEndpoint {
 	public void kenReserveringAanKlantToe(@PathVariable("klantid") long klantid, @PathVariable("reserveringid") long reserveringid){
 		ks.kenreserveringtoeaanklant(klantid, reserveringid);
 	}
+	
+	@GetMapping("loginklant")
+	public String loginKlant(@RequestBody Klant klant) {
+		//ks.loginKlant(klant);
+		return "ok";
+	}
 }
