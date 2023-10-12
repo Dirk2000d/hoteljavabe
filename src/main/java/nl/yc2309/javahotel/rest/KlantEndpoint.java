@@ -57,9 +57,14 @@ public class KlantEndpoint {
 		ks.kenreserveringtoeaanklant(klantid, reserveringid);
 	}
 	
-	@GetMapping("loginklant")
-	public String loginKlant(@RequestBody Klant klant) {
-		//ks.loginKlant(klant);
-		return "ok";
+	@PostMapping("loginklant")
+	public ResponseDto loginKlant(@RequestBody Klant klant) {
+		boolean succes = ks.loginKlant(klant);
+
+		if (succes) {
+			return new ResponseDto();
+		} else {
+			return new ResponseDto(false, "Email bestaat al of wachtwoord komt niet overeen");
+		}
 	}
 }
