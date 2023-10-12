@@ -16,11 +16,11 @@ public class KlantenService {
 	@Autowired
 	KlantRepository kr;
 	// opslaan
-	public void slaKlantOp(Klant klant) 
+	public boolean slaKlantOp(Klant klant) 
 	{
 		Iterable<Klant> nkr = kr.findAll();
 		boolean bestaat = false;
-		
+
 		for (Klant k : nkr) 
 		{
 			if (klant.getEmail().equals(k.getEmail())) 
@@ -29,10 +29,13 @@ public class KlantenService {
 			}
 		}
 		
-		if (bestaat == false) {
+		// bestaat == false
+		if (!bestaat) {
 			kr.save(klant);
+			return true;
 		} else {
 			System.out.println("email bestaat al");
+			return false;
 		}
 		
 	}
