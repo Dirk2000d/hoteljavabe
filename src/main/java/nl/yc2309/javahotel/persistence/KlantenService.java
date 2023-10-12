@@ -60,34 +60,34 @@ public class KlantenService {
 		kr.save(k);
 	}
 	
-	public String loginKlant(Klant klant) 
-	{
-		Iterable<Klant> nkr = kr.findAll();
-		boolean bestaat = false;
-		boolean wwcorrect = false;
-		boolean ingelogd = false;
-		long id = 0;
-		
-		for (Klant k : nkr) 
-		{
-			if (klant.getEmail().equals(k.getEmail()) & klant.getWachtwoord().equals(k.getWachtwoord()) ) 
-			{
-				bestaat = true;
-				wwcorrect = true;
-				id = k.getId();
-			}
-		}
-		
-		if ((bestaat == true) & (wwcorrect == true)) {
-			kr.findById(id);
-			ingelogd = true;
-		} else {
-			System.out.println("email of wachtwoord is incorect");
-			ingelogd = false;
-		}
-		//return ingelogd;
-		
-	}
+//	public String loginKlant(Klant klant) 
+//	{
+//		Iterable<Klant> nkr = kr.findAll();
+//		boolean bestaat = false;
+//		boolean wwcorrect = false;
+//		boolean ingelogd = false;
+//		long id = 0;
+//		
+//		for (Klant k : nkr) 
+//		{
+//			if (klant.getEmail().equals(k.getEmail()) & klant.getWachtwoord().equals(k.getWachtwoord()) ) 
+//			{
+//				bestaat = true;
+//				wwcorrect = true;
+//				id = k.getId();
+//			}
+//		}
+//		
+//		if ((bestaat == true) & (wwcorrect == true)) {
+//			kr.findById(id);
+//			ingelogd = true;
+//		} else {
+//			System.out.println("email of wachtwoord is incorect");
+//			ingelogd = false;
+//		}
+//		//return ingelogd;
+//		
+//	}
 
 	
 }
