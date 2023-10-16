@@ -36,4 +36,8 @@ public class HotelEndpoint {
 		hs.slaHotelOp(hotel);
 	}
 	//-------------------------------------------
+	@GetMapping("voegkameraanhoteltoe/{hotelid}/{kamerid}")
+	public void kenKamerAanHotelToe(@PathVariable("hotelid") int hotelnum,@PathVariable("kamerid") int kamernum ) {
+		hs.kenkamertoeaanhotel(hotelnum, kamernum);
+	}
 }
