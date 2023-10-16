@@ -1,8 +1,10 @@
 package nl.yc2309.javahotel.domein;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Klant extends Account{
@@ -14,6 +16,9 @@ public class Klant extends Account{
 	private String adres;
 	private LocalDate geboorteDatum;
 	private int paspoortNummer;
+	
+	@OneToMany
+	List<Reservering> reserveringen;
 
 	public String getAdres() {
 		return adres;
@@ -34,7 +39,14 @@ public class Klant extends Account{
 		this.paspoortNummer = paspoortNummer;
 	}
 	
+	public void addReservering(Reservering reservering) {
+		this.reserveringen.add(reservering);
+	}
 	
-	
-	
+	public List<Reservering> getReservering() {
+		return reserveringen;
+	}
+	public void setReservering(List<Reservering> reservering) {
+		this.reserveringen = reservering;
+	}
 }

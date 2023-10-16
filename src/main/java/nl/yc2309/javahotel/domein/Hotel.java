@@ -1,9 +1,14 @@
 package nl.yc2309.javahotel.domein;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Hotel {
@@ -15,6 +20,8 @@ public class Hotel {
 	int gemiddeldeWaardering;
 	int aantalKamers;
 	int aantalBeschikbareKamers;
+	@OneToMany
+	List<Kamer> kamers;
 	//--------------------------------
 	public long getId() {
 		return id;
@@ -52,5 +59,16 @@ public class Hotel {
 	public void setAantalBeschikbareKamers(int aantalBeschikbareKamers) {
 		this.aantalBeschikbareKamers = aantalBeschikbareKamers;
 	}
+	public void addKamer(Kamer kamer) {
+		kamers.add(kamer);
+	}
+	public List<Kamer> getKamers() {
+		return kamers;
+	}
+	public void setKamers(List<Kamer> kamers) {
+		this.kamers = kamers;
+	}
+	
+	
 
 }

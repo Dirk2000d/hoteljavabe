@@ -6,19 +6,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.yc2309.javahotel.domein.Klant;
+import nl.yc2309.javahotel.domein.Reservering;
 
 @Service
 public class KlantenService {
-
+	@Autowired
+	ReserveringRepository rr;
+	
 	@Autowired
 	KlantRepository kr;
 	// opslaan
-	public void slaKlantOp(Klant klant) {
-		kr.save(klant);
+	public boolean slaKlantOp(Klant klant) 
+	{
+		Iterable<Klant> nkr = kr.findAll();
+		boolean bestaat = false;
+
+		for (Klant k : nkr) 
+		{
+			if (klant.getEmail().equals(k.getEmail())) 
+			{
+				bestaat = true;
+			}
+		}
+		
+		// bestaat == false
+		if (!bestaat) {
+			kr.save(klant);
+			return true;
+		} else {
+			System.out.println("email bestaat al");
+			return false;
+		}
+		
 	}
 	// view
 	public Iterable<Klant> geefAlleKlanten() {
-		kr.save(new Klant());
 		return kr.findAll();
 	}
 	public Optional<Klant> geefKlant(long id) {
@@ -34,6 +56,40 @@ public class KlantenService {
 	public void verwijderKlant(long id) {
 		kr.deleteById(id);	
 	}
+	public void kenreserveringtoeaanklant(long klantid, long reserveringid) {
+		Klant k = kr.findById(klantid).get();
+		Reservering r = rr.findById(reserveringid).get();
+		k.addReservering(r);
+		kr.save(k);
+	}
+	
+	public boolean loginKlant(Klant klant) 
+	{
+		Iterable<Klant> nkr = kr.findAll();
+		boolean bestaat = false;
+		boolean wwcorrect = false;
+		long id = 0;
+		
+		for (Klant k : nkr) 
+		{
+			if (klant.getEmail().equals(k.getEmail()) & klant.getWachtwoord().equals(k.getWachtwoord()) ) 
+			{
+				bestaat = true;
+				wwcorrect = true;
+				id = k.getId();
+			}
+		}
+		
+		if ((bestaat == true) & (wwcorrect == true)) {
+			kr.findById(id);
+			return true;
+		} else {
+			System.out.println("email of wachtwoord is incorect");
+			return false;
+		}
+		//return ingelogd;
+		
+	}
 
-
+	
 }
