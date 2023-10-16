@@ -23,7 +23,7 @@ public class KamerService {
 	public Iterable<Kamer> geefAlleKamers() {
 		return kr.findAll();
 	}
-	
+	// view 1 kamer
 	public Optional<Kamer> geefKamer(long id) {
 		return kr.findById(id);
 	}
