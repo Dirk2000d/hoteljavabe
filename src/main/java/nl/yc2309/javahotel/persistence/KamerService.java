@@ -1,5 +1,7 @@
 package nl.yc2309.javahotel.persistence;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.yc2309.javahotel.domein.Kamer;
@@ -17,9 +19,13 @@ public class KamerService {
 	//-------------------------------------------
 	// methode view
 	
-	
+	//view
 	public Iterable<Kamer> geefAlleKamers() {
 		return kr.findAll();
+	}
+	// view 1 kamer
+	public Optional<Kamer> geefKamer(long id) {
+		return kr.findById(id);
 	}
 
 	// opslaan

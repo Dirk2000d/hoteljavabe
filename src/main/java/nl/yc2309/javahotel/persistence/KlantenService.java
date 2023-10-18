@@ -62,6 +62,34 @@ public class KlantenService {
 		k.addReservering(r);
 		kr.save(k);
 	}
+	
+	public boolean loginKlant(Klant klant) 
+	{
+		Iterable<Klant> nkr = kr.findAll();
+		boolean bestaat = false;
+		boolean wwcorrect = false;
+		long id = 0;
+		
+		for (Klant k : nkr) 
+		{
+			if (klant.getEmail().equals(k.getEmail()) & klant.getWachtwoord().equals(k.getWachtwoord()) ) 
+			{
+				bestaat = true;
+				wwcorrect = true;
+				id = k.getId();
+			}
+		}
+		
+		if ((bestaat == true) & (wwcorrect == true)) {
+			kr.findById(id);
+			return true;
+		} else {
+			System.out.println("email of wachtwoord is incorect");
+			return false;
+		}
+		//return ingelogd;
+		
+	}
 
-
+	
 }
