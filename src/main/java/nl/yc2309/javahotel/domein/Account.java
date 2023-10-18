@@ -13,7 +13,8 @@ public abstract class Account {
 	private long id;
 	
 	private String wachtwoord;
-	private String name;
+	private String voornaam;
+	private String achternaam;
 	private String email;
 
 	public String getWachtwoord() {
@@ -24,12 +25,12 @@ public abstract class Account {
 		this.wachtwoord = wachtwoord;
 	}
 
-	public String getName() {
-		return name;
+	public String getVoornaam() {
+		return voornaam;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setVoornaam(String voornaam) {
+		this.voornaam = voornaam;
 	}
 
 	public String getEmail() {
@@ -46,6 +47,14 @@ public abstract class Account {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getAchternaam() {
+		return achternaam;
+	}
+
+	public void setAchternaam(String achternaam) {
+		this.achternaam = achternaam;
 	}
 	
 	
