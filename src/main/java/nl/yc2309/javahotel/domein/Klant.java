@@ -8,13 +8,11 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Klant extends Account{
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private long id;
-	
-	
+
 	private String adres;
+
 	private LocalDate geboorteDatum;
+	
 	private int paspoortNummer;
 	private long tel;
 	
@@ -30,6 +28,11 @@ public class Klant extends Account{
 	public void setReserveringen(List<Reservering> reserveringen) {
 		this.reserveringen = reserveringen;
 	}
+	@Override
+	public String getRole() {
+		return "ROLE_KLANT";
+	}
+	
 	@OneToMany
 	List<Reservering> reserveringen;
 
