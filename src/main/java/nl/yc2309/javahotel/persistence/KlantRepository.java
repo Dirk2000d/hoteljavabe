@@ -12,4 +12,6 @@ public interface KlantRepository extends CrudRepository<Klant,Long> {
 
 	Optional<Klant> findByEmailAndWachtwoord(String email, String wachtwoord);
 	
+	Optional<Klant> findByToken(String token);
+	
 }

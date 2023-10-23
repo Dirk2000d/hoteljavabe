@@ -15,6 +15,10 @@ public class AccountService {
 	@Autowired
 	private KlantRepository klantRepo;
 	
+	public Optional<? extends Account> findByToken(String token) {
+		return klantRepo.findByToken(token);
+	}
+	
 	public Optional<? extends Account> login(String email, String wachtwoord) {
 		// Als er een klent is met email en wachtwoord
 		Optional<Klant> klantOptional = klantRepo.findByEmailAndWachtwoord(email, wachtwoord);
