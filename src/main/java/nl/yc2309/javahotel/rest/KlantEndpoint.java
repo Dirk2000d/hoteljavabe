@@ -64,7 +64,7 @@ public class KlantEndpoint {
 		if (succes) {
 			return new ResponseDto();
 		} else {
-			return new ResponseDto(false, "Email bestaat al of wachtwoord komt niet overeen");
+			return new ResponseDto(false, Arrays.asList("Email bestaat al of wachtwoord komt niet overeen"));
 		}
 	}
 }
