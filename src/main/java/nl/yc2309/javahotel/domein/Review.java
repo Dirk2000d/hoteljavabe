@@ -1,5 +1,7 @@
 package nl.yc2309.javahotel.domein;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,7 @@ public class Review {
 	
 	private String tekst;
 	private int waardering;
+	private LocalDate datum;
 	//private Image image;
 	public long getId() {
 		return id;
@@ -38,6 +41,12 @@ public class Review {
 	public void setImage(Image image) {
 		this.image = image;
 	}*/
+	public LocalDate getDatum() {
+		return datum;
+	}
+	public void setDatum(LocalDate datum) {
+		this.datum = datum;
+	}
 	
 	
 }
