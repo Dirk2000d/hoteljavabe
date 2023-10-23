@@ -1,5 +1,8 @@
 package nl.yc2309.javahotel.persistence;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,7 @@ public class ReviewService {
 	}
 
 	public Review slaReviewOp(Review review) {
+		review.setDatum(LocalDate.now());
 		return rr.save(review);
 	}
 	
