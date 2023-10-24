@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import nl.yc2309.javahotel.domein.Reservering;
-import nl.yc2309.javahotel.domein.Review;
 
 @Service
 public class ReserveringService {
