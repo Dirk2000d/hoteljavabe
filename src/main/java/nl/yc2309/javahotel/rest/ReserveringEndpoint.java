@@ -27,7 +27,7 @@ public class ReserveringEndpoint {
 		return rs.geefAlleReserveringen();
 	}
 	
-	@PostMapping("voegReserveringToe")
+	@PostMapping("voegreserveringtoe")
 	public void voegReserveringToe(@RequestBody Reservering reservering) {
 		System.out.println("Hij doet het!");
 		rs.slaReserveringOp(reservering);
