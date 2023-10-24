@@ -1,5 +1,7 @@
 package nl.yc2309.javahotel.rest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,11 @@ public class ReserveringEndpoint {
 	@GetMapping("deReservering") // wat voor verzoek? in url bar
 	public Iterable<Reservering> alleReserveringen() {
 		return rs.geefAlleReserveringen();
+	}
+	
+	@GetMapping("reservering/{id}")
+	public Optional<Reservering> reservering(@PathVariable long id) {
+		return rs.geefReservering(id);
 	}
 	
 	@PostMapping("voegreserveringtoe")
