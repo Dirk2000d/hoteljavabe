@@ -1,5 +1,7 @@
 package nl.yc2309.javahotel.persistence;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,10 @@ public class ReserveringService {
 	public void verwijderReservering(long reserveringid) {
 		rm.deleteById(reserveringid);
 		
+	}
+
+	public Optional<Reservering> geefReservering(long id) {
+		return rm.findById(id);
 	}
 
 }
