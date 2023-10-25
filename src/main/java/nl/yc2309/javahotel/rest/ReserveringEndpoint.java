@@ -38,12 +38,12 @@ public class ReserveringEndpoint {
 	}
 	
 	@PostMapping("voegreserveringtoe")
-	public void voegReserveringToe(@RequestBody SaveReserveringDto dto) {
+	public Reservering voegReserveringToe(@RequestBody SaveReserveringDto dto) {
 		System.out.println("Hij doet het!");
 		
 		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
 		if (kamerOptional.isEmpty()) {
-			return;
+			return null;
 		}
 		
 		Reservering reservering = new Reservering();
@@ -55,6 +55,8 @@ public class ReserveringEndpoint {
 		reservering.setVertrekdatum(dto.getVertrekdatum());
 		
 		rs.slaReserveringOp(reservering);
+		
+		return reservering;
 	}
 	
 	@PutMapping("updatereservering/{id}")
