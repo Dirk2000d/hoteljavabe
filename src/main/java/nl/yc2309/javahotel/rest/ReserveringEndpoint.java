@@ -1,5 +1,6 @@
 package nl.yc2309.javahotel.rest;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.yc2309.javahotel.domein.Kamer;
 import nl.yc2309.javahotel.domein.Klant;
 import nl.yc2309.javahotel.domein.Reservering;
+import nl.yc2309.javahotel.dto.BerekeningDto;
+import nl.yc2309.javahotel.dto.SaveReserveringDto;
 import nl.yc2309.javahotel.persistence.KamerService;
+import nl.yc2309.javahotel.persistence.KlantenService;
 import nl.yc2309.javahotel.persistence.ReserveringService;
 
 
 @RestController
 public class ReserveringEndpoint {
+
 	@Autowired
 	ReserveringService rs;
 	
+	@Autowired
+	private KamerService kamerService;
+	
+	@Autowired
+	private KlantenService klantService;
 	
 	@GetMapping("deReservering") // wat voor verzoek? in url bar
 	public Iterable<Reservering> alleReserveringen() {
@@ -35,13 +45,58 @@ public class ReserveringEndpoint {
 	}
 	
 	@PostMapping("voegreserveringtoe")
-	public void voegReserveringToe(@RequestBody Reservering reservering) {
+	public Reservering voegReserveringToe(@RequestBody SaveReserveringDto dto) {
 		System.out.println("Hij doet het!");
+		
+		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
+		if (kamerOptional.isEmpty()) {
+			return null;
+		}
+
+		Optional<Klant> klantOptional = klantService.geefKlant(dto.getKlantId());
+		if (klantOptional.isEmpty()) {
+			return null;
+		}
+
+		Reservering reservering = new Reservering();
+		reservering.setAankomstDatum(dto.getAankomstDatum());
+		reservering.setAantalPersonen(dto.getAantalPersonen());
+		reservering.setBetaald(false);
+		reservering.setKlant(klantOptional.get());
+		reservering.setKamer(kamerOptional.get());
+		reservering.setOntbijt(dto.isOntbijt());
+		reservering.setVertrekdatum(dto.getVertrekdatum());
+		
 		rs.slaReserveringOp(reservering);
+		
+		return reservering;
 	}
 	
-	@PutMapping("updatereservering")
-	public Reservering updateReservering(@RequestBody Reservering reservering) {
+	@PutMapping("updatereservering/{id}")
+	public Reservering updateReservering(@PathVariable long id, @RequestBody SaveReserveringDto dto) {
+		Optional<Reservering> reserveringOptional = rs.geefReservering(id);
+		if (reserveringOptional.isEmpty()) {
+			return null;
+		}
+
+		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
+		if (kamerOptional.isEmpty()) {
+			return null;
+		}
+
+		Optional<Klant> klantOptional = klantService.geefKlant(dto.getKlantId());
+		if (klantOptional.isEmpty()) {
+			return null;
+		}
+
+		Reservering reservering = reserveringOptional.get();
+		reservering.setAankomstDatum(dto.getAankomstDatum());
+		reservering.setAantalPersonen(dto.getAantalPersonen());
+		reservering.setKlant(klantOptional.get());
+		reservering.setKamer(kamerOptional.get());
+		reservering.setOntbijt(dto.isOntbijt());
+		reservering.setVertrekdatum(dto.getVertrekdatum());
+		
 		return rs.updateReservering(reservering);
 	}
 	
@@ -49,6 +104,24 @@ public class ReserveringEndpoint {
 	public void verwijderReservering(@PathVariable("ReserveringID") int reserveringID) {
 		rs.verwijderReservering(reserveringID);
 	}
-	
+
+	@PostMapping("berekenprijs")
+	public double berekenPrijs(@RequestBody BerekeningDto dto) {
+		double totaalPrijs;
+		
+		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
+		if (kamerOptional.isEmpty()) {
+			return 0;
+		}
+		
+		if(dto.getAankomstDatum()== null || dto.getVertrekdatum() == null) {
+			return 0;
+		}
+		long dagen = ChronoUnit.DAYS.between(dto.getAankomstDatum(), dto.getVertrekdatum());
+		System.out.println(dagen);
+		totaalPrijs = dagen * kamerOptional.get().getPrijs();
+		System.out.println(totaalPrijs);
+		return totaalPrijs;
+	}
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.yc2309.javahotel.domein.Klant;
+import nl.yc2309.javahotel.domein.Reservering;
 import nl.yc2309.javahotel.dto.ResponseDto;
 import nl.yc2309.javahotel.persistence.KlantenService;
 
@@ -54,7 +55,7 @@ public class KlantEndpoint {
 	
 	@GetMapping("voegreserveringtoe/{klantid}/{reserveringid}")
 	public void kenReserveringAanKlantToe(@PathVariable("klantid") long klantid, @PathVariable("reserveringid") long reserveringid){
-		ks.kenreserveringtoeaanklant(klantid, reserveringid);
+//		ks.kenreserveringtoeaanklant(klantid, reserveringid);
 	}
 	
 	@PostMapping("loginklant")
