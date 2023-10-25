@@ -16,16 +16,18 @@ public class ReserveringService {
 	}	
 
 	public void slaReserveringOp(Reservering reservering) {
-		rm.save(reservering);
-		Reservering r = reservering;
-		r.berekenTotaalPrijs(r.berekenAantalDagen(r.getAankomstDatum() , r.getVertrekdatum()), r.getKamer().getPrijs());
-		rm.save(r);
-		
-	}
+		long dagen = reservering.berekenAantalDagen(reservering.getAankomstDatum(), reservering.getVertrekdatum());
 
+		reservering.berekenTotaalPrijs(dagen, reservering.getKamer().getPrijs());
+		rm.save(reservering);
+	}
 
 	public Reservering updateReservering(Reservering reservering) {
 		System.out.println("update revservering");
+
+		long dagen = reservering.berekenAantalDagen(reservering.getAankomstDatum(), reservering.getVertrekdatum());
+
+		reservering.berekenTotaalPrijs(dagen, reservering.getKamer().getPrijs());
 		return rm.save(reservering);
 	}
 
