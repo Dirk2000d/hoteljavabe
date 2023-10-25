@@ -17,7 +17,10 @@ public abstract class Account {
 	protected String wachtwoord;
 
 	@Column(length = 100)
-	protected String name;
+	protected String voornaam;
+	
+	@Column(length = 100)
+	protected String achternaam;
 	
 	@Column(length = 100)
 	protected String email;
@@ -42,12 +45,12 @@ public abstract class Account {
 		this.wachtwoord = wachtwoord;
 	}
 
-	public String getName() {
-		return name;
+	public String getVoornaam() {
+		return voornaam;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setVoornaam(String voornaam) {
+		this.voornaam = voornaam;
 	}
 
 	public String getEmail() {
@@ -64,6 +67,14 @@ public abstract class Account {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public String getAchternaam() {
+		return achternaam;
+	}
+
+	public void setAchternaam(String achternaam) {
+		this.achternaam = achternaam;
 	}
 	
 	public abstract String getRole();

@@ -14,7 +14,20 @@ public class Klant extends Account{
 	private LocalDate geboorteDatum;
 	
 	private int paspoortNummer;
+	private long tel;
 	
+	public long getTel() {
+		return tel;
+	}
+	public void setTel(long tel) {
+		this.tel = tel;
+	}
+	public List<Reservering> getReserveringen() {
+		return reserveringen;
+	}
+	public void setReserveringen(List<Reservering> reserveringen) {
+		this.reserveringen = reserveringen;
+	}
 	@Override
 	public String getRole() {
 		return "ROLE_KLANT";
