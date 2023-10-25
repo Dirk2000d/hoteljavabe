@@ -55,10 +55,8 @@ public class KlantEndpoint {
 	
 	@GetMapping("voegreserveringtoe/{klantid}/{reserveringid}")
 	public void kenReserveringAanKlantToe(@PathVariable("klantid") long klantid, @PathVariable("reserveringid") long reserveringid){
-		ks.kenreserveringtoeaanklant(klantid, reserveringid);
+//		ks.kenreserveringtoeaanklant(klantid, reserveringid);
 	}
-	
-	
 	
 	@PostMapping("loginklant")
 	public ResponseDto loginKlant(@RequestBody Klant klant) {
