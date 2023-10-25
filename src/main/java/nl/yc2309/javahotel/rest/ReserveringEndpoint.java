@@ -1,5 +1,6 @@
 package nl.yc2309.javahotel.rest;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.yc2309.javahotel.domein.Kamer;
 import nl.yc2309.javahotel.domein.Klant;
 import nl.yc2309.javahotel.domein.Reservering;
+import nl.yc2309.javahotel.dto.BerekeningDto;
 import nl.yc2309.javahotel.dto.SaveReserveringDto;
 import nl.yc2309.javahotel.persistence.KamerService;
 import nl.yc2309.javahotel.persistence.KlantenService;
@@ -103,6 +105,23 @@ public class ReserveringEndpoint {
 		rs.verwijderReservering(reserveringID);
 	}
 
-	
+	@PostMapping("berekenprijs")
+	public double berekenPrijs(@RequestBody BerekeningDto dto) {
+		double totaalPrijs;
+		
+		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
+		if (kamerOptional.isEmpty()) {
+			return 0;
+		}
+		
+		if(dto.getAankomstDatum()== null || dto.getVertrekdatum() == null) {
+			return 0;
+		}
+		long dagen = ChronoUnit.DAYS.between(dto.getAankomstDatum(), dto.getVertrekdatum());
+		System.out.println(dagen);
+		totaalPrijs = dagen * kamerOptional.get().getPrijs();
+		System.out.println(totaalPrijs);
+		return totaalPrijs;
+	}
 	
 }
