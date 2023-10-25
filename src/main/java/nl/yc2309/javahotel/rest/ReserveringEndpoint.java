@@ -49,6 +49,7 @@ public class ReserveringEndpoint {
 	public void verwijderReservering(@PathVariable("ReserveringID") int reserveringID) {
 		rs.verwijderReservering(reserveringID);
 	}
+
 	
 	
 }

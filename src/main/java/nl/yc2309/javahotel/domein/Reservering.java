@@ -1,6 +1,8 @@
 package nl.yc2309.javahotel.domein;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,19 @@ public class Reservering {
 	
 	@ManyToOne
 	Kamer kamer;
+	
+	public long berekenAantalDagen(LocalDate aankomst, LocalDate vertrek) {
+		long dagen = ChronoUnit.DAYS.between(aankomst, vertrek);
+		System.out.println(dagen);
+		return dagen;
+	}
+	
+	public double berekenTotaalPrijs(long dagen, double prijs) {
+		double totaalPrijs = dagen * prijs;
+		this.totaalPrijs = totaalPrijs;
+		System.out.println(totaalPrijs);
+		return totaalPrijs;
+	}
 	
 	public long getId() {
 		return id;
