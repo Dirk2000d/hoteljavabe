@@ -19,6 +19,9 @@ public class Reservering {
 	private long id;
 	
 	LocalDate aankomstDatum, vertrekdatum;
+	int aantalPersonen;
+	boolean ontbijt;
+	double totaalPrijs;
 	boolean isBetaald;
 	
 	@ManyToOne
@@ -59,6 +62,24 @@ public class Reservering {
 	}
 	public void setKamer(Kamer kamer) {
 		this.kamer = kamer;
+	}
+	public int getAantalPersonen() {
+		return aantalPersonen;
+	}
+	public void setAantalPersonen(int aantalPersonen) {
+		this.aantalPersonen = aantalPersonen;
+	}
+	public boolean isOntbijt() {
+		return ontbijt;
+	}
+	public void setOntbijt(boolean ontbijt) {
+		this.ontbijt = ontbijt;
+	}
+	public double getTotaalPrijs() {
+		return totaalPrijs;
+	}
+	public void setTotaalPrijs(double totaalPrijs) {
+		this.totaalPrijs = totaalPrijs;
 	}
 	
 	
