@@ -56,12 +56,6 @@ public class KlantenService {
 	public void verwijderKlant(long id) {
 		kr.deleteById(id);	
 	}
-	public void kenreserveringtoeaanklant(long klantid, long reserveringid) {
-		Klant k = kr.findById(klantid).get();
-		Reservering r = rr.findById(reserveringid).get();
-		k.addReservering(r);
-		kr.save(k);
-	}
 	
 	public boolean loginKlant(Klant klant) 
 	{
