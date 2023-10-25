@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.yc2309.javahotel.domein.Kamer;
+import nl.yc2309.javahotel.domein.Klant;
 import nl.yc2309.javahotel.domein.Reservering;
 import nl.yc2309.javahotel.dto.SaveReserveringDto;
 import nl.yc2309.javahotel.persistence.KamerService;
+import nl.yc2309.javahotel.persistence.KlantenService;
 import nl.yc2309.javahotel.persistence.ReserveringService;
 
 
@@ -27,6 +29,9 @@ public class ReserveringEndpoint {
 	@Autowired
 	private KamerService kamerService;
 	
+	@Autowired
+	private KlantenService klantService;
+	
 	@GetMapping("deReservering") // wat voor verzoek? in url bar
 	public Iterable<Reservering> alleReserveringen() {
 		return rs.geefAlleReserveringen();
@@ -38,23 +43,31 @@ public class ReserveringEndpoint {
 	}
 	
 	@PostMapping("voegreserveringtoe")
-	public void voegReserveringToe(@RequestBody SaveReserveringDto dto) {
+	public Reservering voegReserveringToe(@RequestBody SaveReserveringDto dto) {
 		System.out.println("Hij doet het!");
 		
 		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
 		if (kamerOptional.isEmpty()) {
-			return;
+			return null;
 		}
-		
+
+		Optional<Klant> klantOptional = klantService.geefKlant(dto.getKlantId());
+		if (klantOptional.isEmpty()) {
+			return null;
+		}
+
 		Reservering reservering = new Reservering();
 		reservering.setAankomstDatum(dto.getAankomstDatum());
 		reservering.setAantalPersonen(dto.getAantalPersonen());
 		reservering.setBetaald(false);
+		reservering.setKlant(klantOptional.get());
 		reservering.setKamer(kamerOptional.get());
 		reservering.setOntbijt(dto.isOntbijt());
 		reservering.setVertrekdatum(dto.getVertrekdatum());
 		
 		rs.slaReserveringOp(reservering);
+		
+		return reservering;
 	}
 	
 	@PutMapping("updatereservering/{id}")
@@ -69,9 +82,15 @@ public class ReserveringEndpoint {
 			return null;
 		}
 
+		Optional<Klant> klantOptional = klantService.geefKlant(dto.getKlantId());
+		if (klantOptional.isEmpty()) {
+			return null;
+		}
+
 		Reservering reservering = reserveringOptional.get();
 		reservering.setAankomstDatum(dto.getAankomstDatum());
 		reservering.setAantalPersonen(dto.getAantalPersonen());
+		reservering.setKlant(klantOptional.get());
 		reservering.setKamer(kamerOptional.get());
 		reservering.setOntbijt(dto.isOntbijt());
 		reservering.setVertrekdatum(dto.getVertrekdatum());
