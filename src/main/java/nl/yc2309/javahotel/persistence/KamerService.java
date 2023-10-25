@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import nl.yc2309.javahotel.domein.Kamer;
 import nl.yc2309.javahotel.domein.Reservering;
 
@@ -42,12 +44,21 @@ public class KamerService {
 		kr.deleteById(kamerid);	
 	}
 
-	public void kenkamertoeaanreservering(long v, long reservering) {
+	public void kenkamertoeaanreservering(long kamerid, long reservering) {
 		// TODO Auto-generated method stub
-		Kamer K = kr.findById(v).get();
+		Kamer K = kr.findById(kamerid).get();
 		Reservering R = RR.findById(reservering).get();
 		R.setKamer(K);
 		RR.save(R);
+	}
+	
+	public void kenkamertoeaannieuwereservering(long kamerid, Reservering reservering) {
+		Kamer k = kr.findById(kamerid).get();
+		Reservering r = new Reservering();
+		RR.save(reservering);
+		r.setKamer(k);
+		RR.save(r);
+		
 	}
 	
 	

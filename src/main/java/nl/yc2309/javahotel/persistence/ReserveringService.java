@@ -17,8 +17,12 @@ public class ReserveringService {
 
 	public void slaReserveringOp(Reservering reservering) {
 		rm.save(reservering);
+		Reservering r = reservering;
+		r.berekenTotaalPrijs(r.berekenAantalDagen(r.getAankomstDatum() , r.getVertrekdatum()), r.getKamer().getPrijs());
+		rm.save(r);
 		
 	}
+
 
 	public Reservering updateReservering(Reservering reservering) {
 		System.out.println("update revservering");

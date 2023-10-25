@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.yc2309.javahotel.domein.Kamer;
+import nl.yc2309.javahotel.domein.Reservering;
 import nl.yc2309.javahotel.persistence.KamerService;
+import nl.yc2309.javahotel.persistence.ReserveringService;
 
 @RestController
 public class KamerEndpoint {
 	@Autowired
 	KamerService ks;
+	
+	@Autowired
+	ReserveringService rs;
 	
 	
 	@GetMapping("dekamers") // wat voor verzoek? in url bar
@@ -46,8 +51,14 @@ public class KamerEndpoint {
 	}
 	
 	@GetMapping("voegkameraanreserveringtoe/{kamerid}/{reserveringid}")
-	public void kenKamerAanReserveringToe(@PathVariable("kamerid") int reservering, @PathVariable("reserveringid")int v) {
-		ks.kenkamertoeaanreservering(v, reservering);
+	public void kenKamerAanReserveringToe(@PathVariable("kamerid") long kamerid, @PathVariable("reserveringid")long reservering) {
+		ks.kenkamertoeaanreservering(kamerid, reservering);
+		
+	}
+	
+	@PostMapping("voegreserveringtoeaankamer/{kamerid}")
+	public void kenReserveringAanKamerToe(@PathVariable("kamerid") long kamerid, Reservering reservering) {
+		ks.kenkamertoeaannieuwereservering(kamerid, reservering);
 		
 	}
 }
