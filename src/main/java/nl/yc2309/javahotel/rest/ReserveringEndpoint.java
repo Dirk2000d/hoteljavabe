@@ -107,7 +107,9 @@ public class ReserveringEndpoint {
 
 	@PostMapping("berekenprijs")
 	public double berekenPrijs(@RequestBody BerekeningDto dto) {
-		double totaalPrijs;
+		double totaalPrijs = 0;
+		double ontbijtPrijs = 10;
+		double totaalOntbijtPrijs = 0;
 		
 		Optional<Kamer> kamerOptional = kamerService.geefKamer(dto.getKamerId());
 		if (kamerOptional.isEmpty()) {
@@ -117,10 +119,17 @@ public class ReserveringEndpoint {
 		if(dto.getAankomstDatum()== null || dto.getVertrekdatum() == null) {
 			return 0;
 		}
+		
 		long dagen = ChronoUnit.DAYS.between(dto.getAankomstDatum(), dto.getVertrekdatum());
-		System.out.println(dagen);
-		totaalPrijs = dagen * kamerOptional.get().getPrijs();
-		System.out.println(totaalPrijs);
+		
+		if (dto.isOntbijt() == true) {
+			totaalPrijs = dagen * kamerOptional.get().getPrijs();
+			totaalOntbijtPrijs = dagen *(dto.getPersonen() * ontbijtPrijs);
+			totaalPrijs += totaalOntbijtPrijs; 
+		}
+		else {
+			totaalPrijs = dagen * kamerOptional.get().getPrijs();
+		}
 		return totaalPrijs;
 	}
 	
