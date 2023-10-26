@@ -6,16 +6,10 @@ public class BerekeningDto {
 	
 	private LocalDate aankomstDatum;
 	private LocalDate vertrekdatum;
+	private boolean ontbijt;
+	private int personen;
 	
 	private long kamerId;
-
-	public long getKamerId() {
-		return kamerId;
-	}
-
-	public void setKamerId(long kamerId) {
-		this.kamerId = kamerId;
-	}
 
 	public LocalDate getAankomstDatum() {
 		return aankomstDatum;
@@ -32,4 +26,30 @@ public class BerekeningDto {
 	public void setVertrekdatum(LocalDate vertrekdatum) {
 		this.vertrekdatum = vertrekdatum;
 	}
+
+	public boolean isOntbijt() {
+		return ontbijt;
+	}
+
+	public void setOntbijt(boolean ontbijt) {
+		this.ontbijt = ontbijt;
+	}
+
+	public int getPersonen() {
+		return personen;
+	}
+
+	public void setPersonen(int personen) {
+		this.personen = personen;
+	}
+
+	public long getKamerId() {
+		return kamerId;
+	}
+
+	public void setKamerId(long kamerId) {
+		this.kamerId = kamerId;
+	}
+	
+	
 }
